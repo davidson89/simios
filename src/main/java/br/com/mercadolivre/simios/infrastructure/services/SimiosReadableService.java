@@ -1,4 +1,4 @@
-package br.com.mercadolivre.simios.component;
+package br.com.mercadolivre.simios.infrastructure.services;
 
 import br.com.mercadolivre.simios.generator.SequenceGenerator;
 import br.com.mercadolivre.simios.validator.DNACompostionValidator;
@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 import java.util.stream.Stream;
 
 @Component
-public class SimiosReadableComponent implements SimiosComponent {
+public class SimiosReadableService implements SimiosService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableComponent.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableService.class);
 
     public boolean isSimios(String[] horizontalSequence) {
         if (horizontalSequence == null || !this.isValidSequence(horizontalSequence)) {

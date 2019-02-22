@@ -1,6 +1,6 @@
 package br.com.mercadolivre.simios;
 
-import br.com.mercadolivre.simios.component.SimiosPerformaticComponent;
+import br.com.mercadolivre.simios.infrastructure.services.SimiosPerformaticService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -17,7 +17,7 @@ public class SimiosApplication {
         File file = new File("/home/davidson/dna-10.json");
         ObjectMapper objectMapper = new ObjectMapper();
         DnaInput dnaInput = objectMapper.readValue(file, DnaInput.class);
-        SimiosPerformaticComponent simiosComponent = new SimiosPerformaticComponent();
+        SimiosPerformaticService simiosComponent = new SimiosPerformaticService();
 
         LocalDateTime now = LocalDateTime.now();
         boolean simios = simiosComponent.isSimios(dnaInput.getDna());

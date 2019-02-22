@@ -1,4 +1,4 @@
-package br.com.mercadolivre.simios.component;
+package br.com.mercadolivre.simios.infrastructure.services;
 
 import br.com.mercadolivre.simios.validator.DNACompostionValidator;
 import br.com.mercadolivre.simios.validator.DiagonalSimiosValidator;
@@ -9,9 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import java.util.stream.Stream;
 
-public class SimiosPerformaticComponent implements SimiosComponent {
+public class SimiosPerformaticService implements SimiosService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableComponent.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableService.class);
 
     public boolean isSimios(String[] horizontalSequence) {
         if (horizontalSequence == null || !isValidSequence(horizontalSequence)) {
