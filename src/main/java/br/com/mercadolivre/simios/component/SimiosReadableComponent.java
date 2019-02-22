@@ -13,36 +13,43 @@ import java.util.stream.Stream;
 @Component
 public class SimiosReadableComponent implements SimiosComponent {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableComponent.class);    
+    private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableComponent.class);
 
     public boolean isSimios(String[] horizontalSequence) {
-        if (horizontalSequence == null || !isValidSequence(horizontalSequence)) {
+        if (horizontalSequence == null || !this.isValidSequence(horizontalSequence)) {
             return false;
         }
 
         LOG.info("Validando simios na horizontal...");
-        boolean isSimios = Stream.of(horizontalSequence).parallel().anyMatch(SimiosLineValidator::isSimios);
+        boolean isSimios = Stream.of(horizontalSequence)
+                        .parallel()
+                        .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
         if (isSimios) {
             return true;
         }
         LOG.info("Validações simios na horizontal finalizada!");
 
         LOG.info("Gerando vertical...");
-        String[] verticalSequence = SequenceGenerator.generateVerticalSequence(horizontalSequence);
+        String[] verticalSequence = SequenceGenerator.INSTANCE.generateVerticalSequence(horizontalSequence);
         LOG.info("Vertical gerada!");
 
         LOG.info("Validando simios na vertical...");
-        isSimios = Stream.of(verticalSequence).parallel().anyMatch(SimiosLineValidator::isSimios);
+        isSimios = Stream.of(verticalSequence)
+                        .parallel()
+                        .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
         if (isSimios) {
 	    return true;
         }
         LOG.info("Validações simios na vertical finalizada!");
 
         LOG.info("Gerando diagonais...");
-        String[] diagonalSequence = SequenceGenerator.generateDiagonalSequence(horizontalSequence);
+        String[] diagonalSequence = SequenceGenerator.INSTANCE.generateDiagonalSequence(horizontalSequence);
         LOG.info("Diagonais geradas!");
+
         LOG.info("Validando simios na diagonal...");
-        return Stream.of(diagonalSequence).parallel().anyMatch(SimiosLineValidator::isSimios);
+        return Stream.of(diagonalSequence)
+                        .parallel()
+                        .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
     }
 
     /**

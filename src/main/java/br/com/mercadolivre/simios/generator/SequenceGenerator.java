@@ -6,7 +6,11 @@ public class SequenceGenerator {
 
     private static final int DIAGONAL_DELIMITER = 3;
 
-    public static String[] generateVerticalSequence(String[] horizontalSequence) {
+    public static final SequenceGenerator INSTANCE = new SequenceGenerator();
+
+    private SequenceGenerator(){}
+
+    public String[] generateVerticalSequence(String[] horizontalSequence) {
         int length = horizontalSequence.length;
         String[] verticalSequence = new String[length];
         Stream.iterate(0, n -> n + 1)
@@ -37,7 +41,7 @@ public class SequenceGenerator {
      * @param horizontalSequence as sequencias horizontais
      * @return todas as diagonáis possíveis que tenham tamanho maior que 4
      */
-    public static String[] generateDiagonalSequence(String[] horizontalSequence) {
+    public String[] generateDiagonalSequence(String[] horizontalSequence) {
 
         int horizontalLength = horizontalSequence.length;
         int diagonalsLength = 4*horizontalLength - 14;

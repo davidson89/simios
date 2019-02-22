@@ -5,11 +5,13 @@ package br.com.mercadolivre.simios.validator;
  */
 public final class SimiosLineValidator {
 
-    private SimiosLineValidator() {}
-
     private static final int SIMIOS_LENGHT = 4;
 
-    public static boolean isSimios(String sequence) {
+    public static final SimiosLineValidator INSTANCE = new SimiosLineValidator();
+
+    private SimiosLineValidator() {}
+
+    public boolean isSimios(String sequence) {
         String accumulatedLeftLetters = "X";
         String accumulatedRightLetters = "X";
         for (int i = 0, j = sequence.length() - 1; i <= j; i++,j--) {
