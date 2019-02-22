@@ -51,21 +51,4 @@ public class SimiosReadableService implements SimiosService {
                         .parallel()
                         .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
     }
-
-    /**
-     *
-     * @param horizontalSequence a sequencia de DNA de entrada
-     * @return true caso todas as sequencias tenham o mesmo tamanho do array de entrada e que todas as sequencia seja compostas pela base do DNA(ATCG)
-     */
-    private boolean isValidSequence(String[] horizontalSequence) {
-        final int length = horizontalSequence.length;
-        LOG.info("Iniciando Validações de entrada...");
-        boolean isValid = Stream.of(horizontalSequence)
-                        .parallel()
-                        .allMatch(seq -> LenghtValidator.INSTANCE.isValid(length, seq) && DNACompostionValidator.INSTANCE.isValid(seq));
-
-        LOG.info("Validações de entrada finalizada!");
-        return isValid;
-    }
-
 }
