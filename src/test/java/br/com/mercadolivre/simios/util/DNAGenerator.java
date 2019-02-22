@@ -1,4 +1,4 @@
-package br.com.mercadolivre.simios;
+package br.com.mercadolivre.simios.util;
 
 import java.util.Arrays;
 import java.util.List;

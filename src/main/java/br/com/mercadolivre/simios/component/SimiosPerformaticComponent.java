@@ -1,13 +1,13 @@
-package br.com.mercadolivre.simios;
+package br.com.mercadolivre.simios.component;
 
 import br.com.mercadolivre.simios.validator.DNACompostionValidator;
 import br.com.mercadolivre.simios.validator.DiagonalSimiosValidator;
 import br.com.mercadolivre.simios.validator.LenghtValidator;
-import br.com.mercadolivre.simios.validator.SimiosValidator2;
+import br.com.mercadolivre.simios.validator.SimiosLineColumnValidator;
 
 import java.util.stream.Stream;
 
-public class SimiosComponent2 {
+public class SimiosPerformaticComponent implements SimiosComponent {
 
     public boolean isSimios(String[] horizontalSequence) {
         if (horizontalSequence == null) {
@@ -18,7 +18,7 @@ public class SimiosComponent2 {
         System.out.println("Iniciando Validações de entrada...");
         boolean isValid = Stream.of(horizontalSequence)
                         .parallel()
-                        .allMatch(seq -> LenghtValidator.isValid(length, seq) && DNACompostionValidator.isValid(seq));
+                        .allMatch(seq -> LenghtValidator.INSTANCE.isValid(length, seq) && DNACompostionValidator.INSTANCE.isValid(seq));
         System.out.println("Validações de entrada finalizada!");
 
         if (!isValid) {
@@ -26,7 +26,7 @@ public class SimiosComponent2 {
         }
 
         System.out.println("Validando simios na horizontal...");
-        boolean isSimios = SimiosValidator2.isSimios(horizontalSequence);
+        boolean isSimios = SimiosLineColumnValidator.INSTANCE.isSimios(horizontalSequence);
         if (isSimios) {
             return true;
         }

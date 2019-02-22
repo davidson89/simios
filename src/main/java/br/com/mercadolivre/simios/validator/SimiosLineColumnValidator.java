@@ -5,22 +5,22 @@ import java.util.stream.Stream;
 /**
  * Created by davidson on 17/02/19.
  */
-public final class SimiosValidator2 {
-
-    private SimiosValidator2() {}
+public final class SimiosLineColumnValidator {
 
     private static final int SIMIOS_LENGHT = 4;
 
-    public static boolean isSimios(String[] horizontalSequence) {
+    public static final SimiosLineColumnValidator INSTANCE = new SimiosLineColumnValidator();
+
+    private SimiosLineColumnValidator() {}
+
+    public boolean isSimios(String[] horizontalSequence) {
 
         int length = horizontalSequence.length;
-//        for (int n = 0; n < length; n++) {
         return Stream.iterate(0, n -> n + 1)
                         .limit(length)
                         .parallel()
                         .anyMatch(n -> {
 
-//            }
             String accumulatedLeftLettersLine = "X";
             String accumulatedRightLettersLine = "X";
             String accumulatedUpperLettersColumn = "X";

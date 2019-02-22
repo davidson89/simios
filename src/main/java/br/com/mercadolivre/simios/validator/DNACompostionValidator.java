@@ -11,21 +11,17 @@ public class DNACompostionValidator {
 
     private static final Set<String> POSSIBLE_LETTERS = new HashSet<>(Arrays.asList("A", "C", "G", "T"));
 
-    public static boolean isValid(String[] horizontalSequence) {
-        for (int x = 0; x < horizontalSequence.length; x++) {
-            if (isValid(horizontalSequence[x]))
-                return false;
-        }
-        return true;
-    }
+    public static final DNACompostionValidator INSTANCE = new DNACompostionValidator();
 
-    public static boolean isValid(String sequence) {
+    private DNACompostionValidator() {}
+
+    public boolean isValid(String sequence) {
         for (int i = 0, j = sequence.length() - 1 ; i <= j; i++, j--) {
             char leftLetter = sequence.charAt(i);
             char rightLetter = sequence.charAt(j);
-            boolean isValid = POSSIBLE_LETTERS.contains(String.valueOf(leftLetter)) || POSSIBLE_LETTERS.contains(String.valueOf(rightLetter));
+            boolean isValid = POSSIBLE_LETTERS.contains(String.valueOf(leftLetter)) && POSSIBLE_LETTERS.contains(String.valueOf(rightLetter));
             if (!isValid) {
-                return true;
+                return false;
             }
         }
         return true;

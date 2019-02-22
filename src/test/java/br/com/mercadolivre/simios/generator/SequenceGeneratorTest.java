@@ -1,7 +1,6 @@
 package br.com.mercadolivre.simios.generator;
 
-import br.com.mercadolivre.simios.DNAGenerator;
-import br.com.mercadolivre.simios.generator.SequenceGenerator;
+import br.com.mercadolivre.simios.util.DNAGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 

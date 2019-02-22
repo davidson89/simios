@@ -11,16 +11,11 @@ public class LenghtValidator {
 
     private static final int MIN_LENGHT = 4;
 
-    public static boolean isValid(String[] horizontalSequence) {
-        if (horizontalSequence == null || horizontalSequence.length < MIN_LENGHT) {
-            return false;
-        }
-        final int length = horizontalSequence.length;
-        return Stream.of(horizontalSequence)
-                .allMatch(seq -> LenghtValidator.isValid(length, seq));
-    }
+    public static final LenghtValidator INSTANCE = new LenghtValidator();
 
-    public static boolean isValid(int length, String sequence) {
+    private LenghtValidator() {}
+
+    public boolean isValid(int length, String sequence) {
         if (length < MIN_LENGHT || StringUtils.isEmpty(sequence)) {
             return false;
         }

@@ -3,9 +3,9 @@ package br.com.mercadolivre.simios.validator;
 /**
  * Created by davidson on 17/02/19.
  */
-public final class SimiosValidator {
+public final class SimiosLineValidator {
 
-    private SimiosValidator() {}
+    private SimiosLineValidator() {}
 
     private static final int SIMIOS_LENGHT = 4;
 

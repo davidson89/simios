@@ -3,9 +3,7 @@ package br.com.mercadolivre.simios.validator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class SimiosValidator2Test {
+public class SimiosLineValidator2Test {
 
     @Test
     public void SimiosValidationWithDNALength4x4() {
@@ -14,7 +12,7 @@ public class SimiosValidator2Test {
                         "AGCC",
                         "TGTA"};
 
-        boolean isSimios = SimiosValidator2.isSimios(dna);
+        boolean isSimios = SimiosLineColumnValidator.INSTANCE.isSimios(dna);
 
         Assert.assertFalse(isSimios);
     }
