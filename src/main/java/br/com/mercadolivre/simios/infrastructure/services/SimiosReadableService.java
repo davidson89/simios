@@ -1,12 +1,9 @@
 package br.com.mercadolivre.simios.infrastructure.services;
 
 import br.com.mercadolivre.simios.generator.SequenceGenerator;
-import br.com.mercadolivre.simios.validator.DNACompostionValidator;
-import br.com.mercadolivre.simios.validator.LenghtValidator;
 import br.com.mercadolivre.simios.validator.SimiosLineValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.security.InvalidParameterException;
@@ -25,7 +22,7 @@ public class SimiosReadableService implements SimiosService {
         LOG.info("Validando simios na horizontal...");
         boolean isSimios = Stream.of(horizontalSequence)
                         .parallel()
-                        .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
+                        .anyMatch(SimiosLineValidator.INSTANCE::isSimio);
         if (isSimios) {
             return true;
         }
@@ -38,7 +35,7 @@ public class SimiosReadableService implements SimiosService {
         LOG.info("Validando simios na vertical...");
         isSimios = Stream.of(verticalSequence)
                         .parallel()
-                        .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
+                        .anyMatch(SimiosLineValidator.INSTANCE::isSimio);
         if (isSimios) {
 	    return true;
         }
@@ -51,6 +48,6 @@ public class SimiosReadableService implements SimiosService {
         LOG.info("Validando simios na diagonal...");
         return Stream.of(diagonalSequence)
                         .parallel()
-                        .anyMatch(SimiosLineValidator.INSTANCE::isSimios);
+                        .anyMatch(SimiosLineValidator.INSTANCE::isSimio);
     }
 }

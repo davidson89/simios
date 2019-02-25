@@ -11,7 +11,7 @@ public final class SimiosLineValidator {
 
     private SimiosLineValidator() {}
 
-    public boolean isSimios(String sequence) {
+    public boolean isSimio(String sequence) {
         String accumulatedLeftLetters = "X";
         String accumulatedRightLetters = "X";
         for (int i = 0, j = sequence.length() - 1; i <= j; i++,j--) {
@@ -33,7 +33,7 @@ public final class SimiosLineValidator {
             boolean isLastExecution = j - i <= 1;
             if(isLastExecution && lastLeftLetter == lastRightLetter) {
                 // quando j - i for igual a '0' é pq está na mesma posição e não devemos considerar um character.
-                int x = j - i == 0 ? -1 : 0;
+                int x = j - i == 0 ? 1 : 0;
                 return accumulatedLeftLetters.length() + accumulatedRightLetters.length() - x >= SIMIOS_LENGHT;
             }
         }

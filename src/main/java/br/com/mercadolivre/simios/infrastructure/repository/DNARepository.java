@@ -1,11 +1,9 @@
 package br.com.mercadolivre.simios.infrastructure.repository;
 
 import br.com.mercadolivre.simios.domain.persistence.DNAEntity;
-import br.com.mercadolivre.simios.domain.persistence.DNAType;
 import br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.web.ProjectedPayload;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

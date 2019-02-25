@@ -13,7 +13,7 @@ public final class SimiosLineColumnValidator {
 
     private SimiosLineColumnValidator() {}
 
-    public boolean isSimios(String[] horizontalSequence) {
+    public boolean isSimio(String[] horizontalSequence) {
 
         int length = horizontalSequence.length;
         return Stream.iterate(0, n -> n + 1)
@@ -53,7 +53,7 @@ public final class SimiosLineColumnValidator {
                 boolean isLastExecution = j - i <= 1;
                 if(isLastExecution) {
                     // quando j - i for igual a '0' é pq está na mesma posição e não devemos considerar um character.
-                    int x = j - i == 0 ? -1 : 0;
+                    int x = j - i == 0 ? 1 : 0;
 
                     int lenghtAccumulatedLine = accumulatedLeftLettersLine.length() + accumulatedRightLettersLine.length() - x;
                     int lenghtAccumulatedColumn = accumulatedUpperLettersColumn.length() + accumulatedLowerLettersColumn.length() - x;
