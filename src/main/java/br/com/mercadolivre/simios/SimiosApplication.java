@@ -1,41 +1,23 @@
 package br.com.mercadolivre.simios;
 
-import br.com.mercadolivre.simios.infrastructure.services.SimiosPerformaticService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.boot.SpringApplication;
 
-import java.io.File;
 import java.io.IOException;
-import java.time.Duration;
-import java.time.LocalDateTime;
 
 //@SpringBootApplication
 public class SimiosApplication {
 
     public static void main(String[] args) throws IOException {
-//	SpringApplication.run(SimiosApplication.class, args);
-
-        File file = new File("/home/davidson/dna-10.json");
-        ObjectMapper objectMapper = new ObjectMapper();
-        DnaInput dnaInput = objectMapper.readValue(file, DnaInput.class);
-        SimiosPerformaticService simiosComponent = new SimiosPerformaticService();
-
-        LocalDateTime now = LocalDateTime.now();
-        boolean simios = simiosComponent.isSimios(dnaInput.getDna());
-        System.out.println("Simios: " + simios + " - tempo execução: " + Duration.between(now, LocalDateTime.now()));
+	SpringApplication.run(SimiosApplication.class, args);
+//
+//        File file = new File("/home/davidson/dna-10.json");
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        DnaInput dnaInput = objectMapper.readValue(file, DnaInput.class);
+//        SimiosPerformingService simiosComponent = new SimiosPerformingService();
+//
+//        LocalDateTime now = LocalDateTime.now();
+//        boolean simios = simiosComponent.isSimio(dnaInput.getDna());
+//        System.out.println("Simios: " + simios + " - tempo execução: " + Duration.between(now, LocalDateTime.now()));
     }
-
-
-    public static class DnaInput {
-        private String[] dna;
-
-        public String[] getDna() {
-	    return dna;
-        }
-
-        public void setDna(String[] dna) {
-	    this.dna = dna;
-        }
-    }
-
 }
 

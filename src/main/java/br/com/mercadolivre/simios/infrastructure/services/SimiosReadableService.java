@@ -7,15 +7,16 @@ import br.com.mercadolivre.simios.validator.SimiosLineValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.stream.Stream;
 
-@Component
+@Service("simiosReadableService")
 public class SimiosReadableService implements SimiosService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableService.class);
 
-    public boolean isSimios(String[] horizontalSequence) {
+    public boolean isSimio(String[] horizontalSequence) {
         if (horizontalSequence == null || !this.isValidSequence(horizontalSequence)) {
             return false;
         }

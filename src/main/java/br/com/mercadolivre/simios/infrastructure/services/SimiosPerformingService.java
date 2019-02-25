@@ -4,12 +4,14 @@ import br.com.mercadolivre.simios.validator.DiagonalSimiosValidator;
 import br.com.mercadolivre.simios.validator.SimiosLineColumnValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-public class SimiosPerformaticService implements SimiosService {
+@Service("simiosPerformingService")
+public class SimiosPerformingService implements SimiosService {
 
     private static final Logger LOG = LoggerFactory.getLogger(SimiosReadableService.class);
 
-    public boolean isSimios(String[] horizontalSequence) {
+    public boolean isSimio(String[] horizontalSequence) {
         if (horizontalSequence == null || !isValidSequence(horizontalSequence)) {
             return false;
         }

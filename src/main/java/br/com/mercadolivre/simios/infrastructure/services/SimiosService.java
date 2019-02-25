@@ -11,7 +11,7 @@ public interface SimiosService {
 
     Logger LOG = LoggerFactory.getLogger(SimiosReadableService.class);
 
-    boolean isSimios(String[] horizontalSequence);
+    boolean isSimio(String[] horizontalSequence);
 
     /**
      *
