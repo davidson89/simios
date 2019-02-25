@@ -21,9 +21,6 @@ public class DNAServiceImpl implements DNAService {
     @Autowired
     private DNARepository dnaRepository;
 
-//    @Autowired
-//    private DNAInfoRepository dnaInfoRepository;
-
     @Autowired
     @Qualifier("simiosPerformingService")
     private SimiosService simiosService;
