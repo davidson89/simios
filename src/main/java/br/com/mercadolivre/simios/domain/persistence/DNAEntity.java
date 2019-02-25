@@ -2,6 +2,7 @@ package br.com.mercadolivre.simios.domain.persistence;
 
 import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -69,7 +70,7 @@ public class DNAEntity {
         DNAEntity dnaEntity = (DNAEntity) o;
 
         if (!Arrays.equals(dnaSequence, dnaEntity.dnaSequence)) return false;
-        if (hash != null ? !hash.equals(dnaEntity.hash) : dnaEntity.hash != null) return false;
+        if (!Objects.equals(hash, dnaEntity.hash)) return false;
         return dnaType == dnaEntity.dnaType;
 
     }
