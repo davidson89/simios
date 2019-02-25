@@ -2,48 +2,28 @@ package br.com.mercadolivre.simios.infrastructure.repository;
 
 import br.com.mercadolivre.simios.domain.persistence.DNAEntity;
 import br.com.mercadolivre.simios.domain.persistence.DNAType;
+import br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.web.ProjectedPayload;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by davidson on 24/02/19.
  */
+@Repository
 public interface DNARepository extends CrudRepository<DNAEntity, String> {
 
+    List<DNAEntity> findAllByHashEquals(Integer hash);
+
     @Query("SELECT " +
-            "    new br.com.mercadolivre.simios.infrastructure.repository.DNARepository.DNAGroupByType(dna.dnaType, COUNT(dna)) " +
+            "    new br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo(dna.dnaType, COUNT(dna)) " +
             "FROM " +
-            "    br.com.mercadolivre.simios.domain.persistence.DNAEntity dna " +
+            "    DNAEntity dna " +
             "GROUP BY " +
             "    dna.dnaType")
-    List<DNAGroupByType> findDNAGroupByType();
-
-    class DNAGroupByType {
-        private final DNAType dnaType;
-        private final int count;
-
-        public DNAGroupByType(DNAType dnaType, int count) {
-            this.dnaType = dnaType;
-            this.count = count;
-        }
-
-        public DNAType getDnaType() {
-            return dnaType;
-        }
-
-        public int getCount() {
-            return count;
-        }
-
-        public boolean isHuman() {
-            return this.dnaType.isHuman();
-        }
-
-        public boolean isSimio() {
-            return !this.isHuman();
-        }
-    }
+    List<DNAInfo> findDNAInfo();
 
 }

@@ -68,7 +68,6 @@ public class DNAEntity {
 
         DNAEntity dnaEntity = (DNAEntity) o;
 
-        if (id != null ? !id.equals(dnaEntity.id) : dnaEntity.id != null) return false;
         if (!Arrays.equals(dnaSequence, dnaEntity.dnaSequence)) return false;
         if (hash != null ? !hash.equals(dnaEntity.hash) : dnaEntity.hash != null) return false;
         return dnaType == dnaEntity.dnaType;
@@ -77,9 +76,6 @@ public class DNAEntity {
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (hash != null ? hash.hashCode() : 0);
-        result = 31 * result + (dnaType != null ? dnaType.hashCode() : 0);
-        return result;
+        return hash;
     }
 }

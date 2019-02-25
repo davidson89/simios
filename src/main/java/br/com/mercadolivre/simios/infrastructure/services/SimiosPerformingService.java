@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.security.InvalidParameterException;
+
 @Service("simiosPerformingService")
 public class SimiosPerformingService implements SimiosService {
 
@@ -13,12 +15,12 @@ public class SimiosPerformingService implements SimiosService {
 
     public boolean isSimio(String[] horizontalSequence) {
         if (horizontalSequence == null || !isValidSequence(horizontalSequence)) {
-            return false;
+            throw new InvalidParameterException("The input no is valid!");
         }
 
         LOG.info("Validando simios na horizontal e vertical...");
-        boolean isSimios = SimiosLineColumnValidator.INSTANCE.isSimios(horizontalSequence);
-        if (isSimios) {
+        boolean isSimio = SimiosLineColumnValidator.INSTANCE.isSimios(horizontalSequence);
+        if (isSimio) {
             return true;
         }
         LOG.info("Validação simios na horizontal e vertical finalizada!");

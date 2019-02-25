@@ -13,7 +13,7 @@ public class SequenceGeneratorTest {
                         "AGCC",
                         "TGTA"};
 
-        String[] diagonalSequence = SequenceGenerator.generateVerticalSequence(dna);
+        String[] diagonalSequence = SequenceGenerator.INSTANCE.generateVerticalSequence(dna);
 
         Assert.assertEquals(4, diagonalSequence.length);
 
@@ -31,7 +31,7 @@ public class SequenceGeneratorTest {
                         "TGTAT",
                         "AAGCA"};
 
-        String[] diagonalSequence = SequenceGenerator.generateVerticalSequence(dna);
+        String[] diagonalSequence = SequenceGenerator.INSTANCE.generateVerticalSequence(dna);
 
         Assert.assertEquals(5, diagonalSequence.length);
 
@@ -50,7 +50,7 @@ public class SequenceGeneratorTest {
                         "AGCC",
                         "TGTA"};
 
-        String[] diagonalSequence = SequenceGenerator.generateDiagonalSequence(dna);
+        String[] diagonalSequence = SequenceGenerator.INSTANCE.generateDiagonalSequence(dna);
 
         Assert.assertEquals(2, diagonalSequence.length);
 
@@ -66,7 +66,7 @@ public class SequenceGeneratorTest {
                         "TGTAT",
                         "AATAC"};
 
-        String[] diagonalSequence2 = SequenceGenerator.generateDiagonalSequence(dna);
+        String[] diagonalSequence2 = SequenceGenerator.INSTANCE.generateDiagonalSequence(dna);
 
         Assert.assertEquals(6, diagonalSequence2.length);
 
@@ -89,7 +89,7 @@ public class SequenceGeneratorTest {
                         "AATACC",
                         "CGTACT"};
 
-        String[] diagonalSequence2 = SequenceGenerator.generateDiagonalSequence(dna);
+        String[] diagonalSequence2 = SequenceGenerator.INSTANCE.generateDiagonalSequence(dna);
 
         Assert.assertEquals(10, diagonalSequence2.length);
 
@@ -113,7 +113,7 @@ public class SequenceGeneratorTest {
     public void generateDiagonalSequenceValidateNLenghts() {
         for (int x = 7; x <= 100 ; x++) {
             String[] dna = DNAGenerator.generateRandomDNA(x);
-            String[] diagonalSequence = SequenceGenerator.generateDiagonalSequence(dna);
+            String[] diagonalSequence = SequenceGenerator.INSTANCE.generateDiagonalSequence(dna);
             int expectedDiagonalLenght = 4 * x - 14;
             Assert.assertEquals(expectedDiagonalLenght, diagonalSequence.length);
         }

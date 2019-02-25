@@ -11,7 +11,7 @@ public class DNARequest {
     private final String[] dnaSequence;
 
     @JsonCreator
-    private DNARequest(@JsonProperty("dna") String[] dnaSequence) {
+    public DNARequest(@JsonProperty("dna") String[] dnaSequence) {
         this.dnaSequence = dnaSequence;
     }
 

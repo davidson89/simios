@@ -9,5 +9,7 @@ public interface DNAService {
 
     void save(String[] sequence, boolean isSimio);
 
+    boolean isSimio(String[] sequence);
+
     DNAStats getStats();
 }

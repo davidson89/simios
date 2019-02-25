@@ -3,13 +3,15 @@ package br.com.mercadolivre.simios.domain.http;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  * Created by davidson on 24/02/19.
  */
 public class DNAStats {
 
-    public static final int SCALE = 2;
+    private static final int SCALE = 2;
+
     private final int countHumanDNA;
 
     private final int countMutantDNA;
@@ -22,7 +24,7 @@ public class DNAStats {
 
         this.ratio = countHumanDNA == 0 ? 0 :
                 new BigDecimal((double) this.countMutantDNA / (double) this.countHumanDNA)
-                        .setScale(SCALE, BigDecimal.ROUND_HALF_DOWN)
+                        .setScale(SCALE, RoundingMode.HALF_DOWN)
                         .floatValue();
     }
 
