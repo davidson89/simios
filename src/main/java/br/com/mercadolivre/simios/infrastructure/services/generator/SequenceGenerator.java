@@ -1,4 +1,4 @@
-package br.com.mercadolivre.simios.generator;
+package br.com.mercadolivre.simios.infrastructure.services.generator;
 
 import java.util.stream.Stream;
 

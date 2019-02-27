@@ -17,8 +17,7 @@ public class SimiosPerformingService implements SimiosService {
         }
 
         LOG.info("Validando simios na horizontal e vertical...");
-        boolean isSimio = SimiosLineColumnValidator.INSTANCE.isSimio(horizontalSequence);
-        if (isSimio) {
+        if (SimiosLineColumnValidator.INSTANCE.isSimio(horizontalSequence)) {
             return true;
         }
         LOG.info("Validação simios na horizontal e vertical finalizada!");

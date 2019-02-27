@@ -1,10 +1,8 @@
 package br.com.mercadolivre.simios.infrastructure.services;
 
-import org.junit.Test;
+public class SimiosReadableServiceTest extends SimiosServiceTest {
 
-public class SimiosReadableServiceTest {
-
-    @Test
-    public void isSimio() {
+    public SimiosReadableServiceTest() {
+        super(new SimiosReadableService());
     }
 }

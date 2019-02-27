@@ -1,6 +1,6 @@
 package br.com.mercadolivre.simios.infrastructure.services;
 
-import br.com.mercadolivre.simios.generator.SequenceGenerator;
+import br.com.mercadolivre.simios.infrastructure.services.generator.SequenceGenerator;
 import br.com.mercadolivre.simios.validator.SimiosLineValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
