@@ -14,6 +14,5 @@ public class SimiosApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }
 
