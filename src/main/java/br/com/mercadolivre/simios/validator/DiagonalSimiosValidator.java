@@ -4,8 +4,12 @@ import java.util.stream.Stream;
 
 public class DiagonalSimiosValidator {
 
+    public static final DiagonalSimiosValidator INSTANCE = new DiagonalSimiosValidator();
+
     private static final int DIAGONAL_DELIMITER = 3;
     private static final int SIMIOS_LENGHT = 4;
+
+    private DiagonalSimiosValidator(){};
 
     /**
      * A quantidade de diagonais é resolvida pela formula da reta y = a*x + c, onde a = 4 e c = -14.
@@ -13,7 +17,7 @@ public class DiagonalSimiosValidator {
      *
      * @param horizontalSequence as sequencias horizontais
      */
-    public static boolean isSimios(String[] horizontalSequence) {
+    public boolean isSimio(String[] horizontalSequence) {
 
         int horizontalLength = horizontalSequence.length;
 

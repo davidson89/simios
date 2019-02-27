@@ -10,6 +10,8 @@ public class SimiosLineValidatorTest {
         Assert.assertTrue(SimiosLineValidator.INSTANCE.isSimio("AGGGG"));
         Assert.assertTrue(SimiosLineValidator.INSTANCE.isSimio("GGGGA"));
         Assert.assertTrue(SimiosLineValidator.INSTANCE.isSimio("AGGGGA"));
+        Assert.assertTrue(SimiosLineValidator.INSTANCE.isSimio("GGGGCAATGC"));
+        Assert.assertTrue(SimiosLineValidator.INSTANCE.isSimio("CAGTCACCCC"));
     }
 
     @Test

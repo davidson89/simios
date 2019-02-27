@@ -6,7 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.security.InvalidParameterException;
 import java.util.stream.Stream;
 
 @Service("simiosReadableService")
@@ -16,7 +15,7 @@ public class SimiosReadableService implements SimiosService {
 
     public boolean isSimio(String[] horizontalSequence) {
         if (horizontalSequence == null || !this.isValidSequence(horizontalSequence)) {
-            throw new InvalidParameterException("The input no is valid!");
+            throw new IllegalArgumentException("The input no is valid!");
         }
 
         LOG.info("Validando simios na horizontal...");

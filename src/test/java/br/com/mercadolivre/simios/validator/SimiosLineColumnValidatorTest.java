@@ -71,4 +71,73 @@ public class SimiosLineColumnValidatorTest {
         Assert.assertTrue(isSimio);
 
     }
+
+    @Test
+    public void SimiosValidationWithDNALength10x10() {
+
+        String[] dna = {"ATCGATCGAT",
+                        "CGATCGATCG",
+                        "ATCGATCGAT",
+                        "CGATCGATCG",
+                        "ATCGATCGAT",
+                        "CGATCGATCG",
+                        "ATCGATCGAT",
+                        "CGATCGATCG",
+                        "ATCGATCGAT",
+                        "CGATCGATCG"};
+
+        Assert.assertFalse(SimiosLineColumnValidator.INSTANCE.isSimio(dna));
+
+        String[] dnaSimioInLineLeft = {"ATCGATCGAT",
+                                   "CGATCGATCG",
+                                   "ATCGATCGAT",
+                                   "CGATCGATCG",
+                                   "ATCGATCGAT",
+                                   "CGATCGATCG",
+                                   "ATCGATCGAT",
+                                   "CGATCGATCG",
+                                   "ATCGATCGAT",
+                                   "CCCCC"+ "GATCG"};
+
+        Assert.assertTrue(SimiosLineColumnValidator.INSTANCE.isSimio(dnaSimioInLineLeft));
+
+
+        String[] dnaSimioInColumnUpper = {"ATCGATCG" + "A" + "T",
+                                          "CGATCGAT" + "A" + "G",
+                                          "ATCGATCG" + "A" + "T",
+                                          "CGATCGAT" + "A" + "G",
+                                          "ATCGATCGCT",
+                                          "CGATCGATCG",
+                                          "ATCGATCGAT",
+                                          "CGATCGATCG",
+                                          "ATCGATCGAT",
+                                          "CGATCGATCG"};
+
+        Assert.assertTrue(SimiosLineColumnValidator.INSTANCE.isSimio(dnaSimioInColumnUpper));
+
+        String[] dnaSimioInLineRight = {"ATCGATCGAT",
+                                        "CGATCGATCG",
+                                        "ATCGATCGAT",
+                                        "CGATCGATCG",
+                                        "ATCGATCGAT",
+                                        "CGATCGATCG",
+                                        "ATCGATCGAT",
+                                        "CGATCGATCG",
+                                        "ATCGATCGAT",
+                                        "CGATCG" + "TTTT"};
+
+        Assert.assertTrue(SimiosLineColumnValidator.INSTANCE.isSimio(dnaSimioInLineRight));
+
+        String[] dnaSimioInColumnLower = {"ATCGATCGAT",
+                                          "CGATCGATCG",
+                                          "ATCGATCGAT",
+                                          "CGATCGATCG",
+                                          "ATCGATCGAT",
+                                          "CGATCGATCG",
+                                          "ATCGATCG" + "A" + "T",
+                                          "CGATCGAT" + "A" + "G",
+                                          "ATCGATCG" + "A" + "T",
+                                          "CGATCGAT" + "A" + "G"};
+        Assert.assertTrue(SimiosLineColumnValidator.INSTANCE.isSimio(dnaSimioInColumnLower));
+    }
 }
