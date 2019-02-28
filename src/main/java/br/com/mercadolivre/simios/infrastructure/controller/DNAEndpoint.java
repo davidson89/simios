@@ -49,7 +49,7 @@ public class DNAEndpoint {
                    @ApiResponse(response = String.class, code = 400, message = "The input no is valid"),
                    @ApiResponse(response = String.class, code = 429, message = "Too many requests")
     })
-    @Throttling(type = ThrottlingType.RemoteAddr, limit = 2)
+    @Throttling(type = ThrottlingType.RemoteAddr, limit = 2, timeUnit = TimeUnit.SECONDS)
     public ResponseEntity<DNAResponse> isSimio(@RequestBody DNARequest dnaRequest) {
         try {
             return dnaService.isSimio(dnaRequest.getDnaSequence()) ? OK : NOK;
