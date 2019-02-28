@@ -43,8 +43,8 @@ Para facilitar a utilização do sistema, foi adicionado no projeto uma interfac
 [Heroku](https://dna-validator.herokuapp.com/dna/actuator/health)
 
 ## Decisões do desenvolvedor
-**Implementação:** Foi optado fazer duas implementações uma que é mais fácil de ser entenda e também de fazer manutenção (SimiosReadableService) e outra mais performatica (SimiosPerformingService). O projeto está utilizando apenas a mais performatica, mas poderia ser mudada a implementação apenas mudando o qualificador da injeção de dependência.
+**Implementação:** Foi optado fazer duas implementações uma que é mais fácil de ser entendida e também de fazer manutenção (SimiosReadableService) e outra mais performatica (SimiosPerformingService). O projeto está utilizando apenas a mais performatica, mas poderia ser mudada a implementação apenas mudando o qualificador da injeção de dependência.
 *  Na implementação mais performática foi optado por validar as linhas e as colunas de uma só vez, dentro de um mesmo `for` e depois de validar as diagonais
 *  Na implementação mais legivel foi optado por validar as linhas, depois gerar as colunas e validá las, gerar as diagonais e validá las.
 
-**Throttling:** De acordo com uma observação informada no teste, dizendo que "a API pode receber flutuações de tráfego agressivas", foi decido adicionar um framework para fazer **Throttling** via código. Porém o mais indicado é que isso seja feito via infraestrutura e não via código.
+**Throttling:** De acordo com uma observação informada no teste, dizendo que **"a API pode receber flutuações de tráfego agressivas"**, foi decido adicionar um framework para fazer **Throttling** via código. Porém o mais indicado é que isso seja feito via infraestrutura e não via código.
