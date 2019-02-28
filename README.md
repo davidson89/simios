@@ -30,7 +30,7 @@ Essa aplicação tem a funcionalidade de catalogar DNAs e testar se um DNA é de
 >> Exemplo: `curl -X GET "http://localhost:8080/dna/stats" -H "accept: application/json"`
 
 
-## UI
+## UI Swagger
 Para facilitar a utilização do sistema, foi adicionado no projeto uma interface Swagger que pode ser acessada através do [link](http://localhost:8080/swagger-ui.html).
 
 ## URL da API no Heroku
