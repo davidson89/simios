@@ -1,6 +1,7 @@
 package br.com.mercadolivre.simios.domain.http;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
@@ -15,6 +16,7 @@ public class DNARequest {
         this.dnaSequence = dnaSequence;
     }
 
+    @JsonIgnore
     public String[] getDnaSequence() {
         return dnaSequence;
     }

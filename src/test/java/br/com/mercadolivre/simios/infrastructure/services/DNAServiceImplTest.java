@@ -1,9 +1,11 @@
 package br.com.mercadolivre.simios.infrastructure.services;
 
+import br.com.mercadolivre.simios.domain.http.DNAStats;
 import br.com.mercadolivre.simios.domain.persistence.DNAEntity;
 import br.com.mercadolivre.simios.domain.persistence.DNAType;
-import br.com.mercadolivre.simios.infrastructure.controller.DNAEndpoint;
 import br.com.mercadolivre.simios.infrastructure.repository.DNARepository;
+import br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -40,8 +42,8 @@ public class DNAServiceImplTest {
     }
 
     @Test
-    public void noSaveDNABecauseDiscoveryExistentDNAInDatabase() {
-        DNAEntity dnaEntity = DNAEntity.of(SIMIO_DNA, DNAType.SIMIO);
+    public void noSaveDNABecauseDNAExistsInDatabase() {
+        var dnaEntity = DNAEntity.of(SIMIO_DNA, DNAType.SIMIO);
 
         Mockito.when(dnaRepository.findAllByHashEquals(any())).thenReturn(List.of(dnaEntity));
         dnaService.save(SIMIO_DNA, true);
@@ -51,10 +53,33 @@ public class DNAServiceImplTest {
 
     @Test
     public void isSimio() {
-
+        dnaService.isSimio(SIMIO_DNA);
+        Mockito.verify(simiosService, Mockito.times(1)).isSimio(any());
+        Mockito.verify(dnaRepository, Mockito.times(1)).findAllByHashEquals(any());
+        Mockito.verify(dnaRepository, Mockito.times(1)).save(any());
     }
 
     @Test
-    public void getStats() {
+    public void getStatsWithHumanTwo() {
+        var dnaInfoHuman = new DNAInfo(DNAType.HUMAN, 2L);
+        var dnaInfoSimio = new DNAInfo(DNAType.SIMIO, 1L);
+        Mockito.when(dnaRepository.findDNAInfo()).thenReturn(List.of(dnaInfoHuman, dnaInfoSimio));
+
+        DNAStats dnaStats = dnaService.getStats();
+        Assert.assertEquals(2, dnaStats.getCountHumanDNA());
+        Assert.assertEquals(1, dnaStats.getCountMutantDNA());
+        Assert.assertEquals(0,0.5, dnaStats.getRatio());
+    }
+
+    @Test
+    public void getStatsWithHumanZero() {
+        var dnaInfoHuman = new DNAInfo(DNAType.HUMAN, 0L);
+        var dnaInfoSimio = new DNAInfo(DNAType.SIMIO, 1L);
+        Mockito.when(dnaRepository.findDNAInfo()).thenReturn(List.of(dnaInfoHuman, dnaInfoSimio));
+
+        DNAStats dnaStats = dnaService.getStats();
+        Assert.assertEquals(0, dnaStats.getCountHumanDNA());
+        Assert.assertEquals(1, dnaStats.getCountMutantDNA());
+        Assert.assertEquals(0,0, dnaStats.getRatio());
     }
 }

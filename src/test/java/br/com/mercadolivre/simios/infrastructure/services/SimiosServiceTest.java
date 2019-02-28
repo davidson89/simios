@@ -23,7 +23,7 @@ public abstract class SimiosServiceTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void isSimioIllegalArgumentDivergentLength() {
-        simiosService.isSimio(new String[]{"ATCC", "AGCA", "TTCT", "AAC"});
+        simiosService.isSimio(new String[]{"ATCC", "AGCA", "TTCT", "AACAT"});
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -1,21 +1,18 @@
 package br.com.mercadolivre.simios.domain.http;
 
-/**
- * Created by davidson on 24/02/19.
- */
 public class DNAResponse {
 
-    private final boolean simios;
+    private final String msg;
 
-    private DNAResponse(boolean simios) {
-        this.simios = simios;
+    private DNAResponse(String msg) {
+	this.msg = msg;
     }
 
-    private static DNAResponse of(boolean simios) {
-        return new DNAResponse(simios);
+    public static DNAResponse of(String msg) {
+        return new DNAResponse(msg);
     }
 
-    public boolean isSimios() {
-        return simios;
+    public String getMsg() {
+	return msg;
     }
 }
