@@ -1,1 +1,1 @@
-web: java -jar target/simios-1.0.0-SNAPSHOT.jar -Dspring.profiles.active=prod
+web: java -jar -Dspring.profiles.active=prod target/simios-1.0.0-SNAPSHOT.jar
