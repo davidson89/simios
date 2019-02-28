@@ -1,7 +1,8 @@
 # Simios
 ### Validador de DNA
 
-Essa aplicação tem a funcionalidade de catalogar DNAs e testar se um DNA é de um simio (mutante) ou não
+Essa aplicação tem a funcionalidade de catalogar DNAs e testar se um DNA é de um simio (mutante) ou não.
+Também é possível obter a proporção de DNAs Simio para cada DNA Humano, através dos DNAs catalogados.
 
 ## Tecnologias Utilizadas
 
