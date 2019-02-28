@@ -1,1 +1,1 @@
-web: java -jar -Dspring.profiles.active=prod target/simios-1.0.0-SNAPSHOT.jar
+web: java -jar -Dspring.profiles.active=prod -Dspring.server.port=$PORT target/simios-1.0.0-SNAPSHOT.jar
