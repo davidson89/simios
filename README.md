@@ -30,9 +30,9 @@ Também é possível obter a proporção de DNAs Simio para cada DNA Humano, atr
 >> Exemplo Heroku: `curl -X POST "https://dna-validator.herokuapp.com/dna/simian" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"dna\": [ \"ATCC\", \"AGCA\", \"TTCT\", \"AAAA\" ]}"`
 
 * Para solicitar as estatistica dos DNAs catalogados:
->> Exemplo: `curl -X GET "http://localhost:8080/dna/stats" -H "accept: application/json"`
+>> Exemplo Local: `curl -X GET "http://localhost:8080/dna/stats" -H "accept: application/json"`
 
->> Exemplo: `curl -X GET "https://dna-validator.herokuapp.com/dna/stats" -H "accept: application/json"`
+>> Exemplo Heroku: `curl -X GET "https://dna-validator.herokuapp.com/dna/stats" -H "accept: application/json"`
 
 
 ## UI Swagger
