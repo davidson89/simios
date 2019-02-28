@@ -4,6 +4,8 @@ import br.com.mercadolivre.simios.domain.http.DNARequest;
 import br.com.mercadolivre.simios.domain.http.DNAResponse;
 import br.com.mercadolivre.simios.domain.http.DNAStats;
 import br.com.mercadolivre.simios.infrastructure.services.DNAService;
+import com.weddini.throttling.Throttling;
+import com.weddini.throttling.ThrottlingType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.TimeUnit;
 
 import static org.springframework.http.HttpStatus.FORBIDDEN;
 
@@ -42,8 +46,10 @@ public class DNAEndpoint {
     @RequestMapping(method = RequestMethod.POST, path = "simian", produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiResponses({@ApiResponse(response = String.class, code = 200, message = "It's a simio"),
                    @ApiResponse(response = String.class, code = 403, message = "This is not a simio"),
-                   @ApiResponse(response = String.class, code = 400, message = "The input no is valid")
+                   @ApiResponse(response = String.class, code = 400, message = "The input no is valid"),
+                   @ApiResponse(response = String.class, code = 429, message = "Too many requests")
     })
+    @Throttling(type = ThrottlingType.RemoteAddr, limit = 2)
     public ResponseEntity<DNAResponse> isSimio(@RequestBody DNARequest dnaRequest) {
         try {
             return dnaService.isSimio(dnaRequest.getDnaSequence()) ? OK : NOK;
