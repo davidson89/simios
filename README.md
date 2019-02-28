@@ -32,7 +32,7 @@ Também é possível obter a proporção de DNAs Simio para cada DNA Humano, atr
 
 
 ## UI Swagger
-Para facilitar a utilização do sistema, foi adicionado no projeto uma interface Swagger que pode ser acessada através do [link](http://localhost:8080/swagger-ui.html).
+Para facilitar a utilização do sistema, foi adicionado no projeto uma interface Swagger que pode ser acessada através do [link](http://localhost:8080/dna/swagger-ui.html).
 
 ## URL da API no Heroku
 [Heroku](http://localhost:8080/dna/actuator/health)
