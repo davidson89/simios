@@ -25,15 +25,19 @@ Também é possível obter a proporção de DNAs Simio para cada DNA Humano, atr
 
 * Para solicitar a validação de um DNA:
 
->> Exemplo: `curl -X POST "http://localhost:8080/dna/simian" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"dna\": [ \"ATCC\", \"AGCA\", \"TTCT\", \"AAAA\" ]}"`
+>> Exemplo Local: `curl -X POST "http://localhost:8080/dna/simian" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"dna\": [ \"ATCC\", \"AGCA\", \"TTCT\", \"AAAA\" ]}"`
+
+>> Exemplo Heroku: `curl -X POST "https://dna-validator.herokuapp.com/dna/simian" -H "accept: application/json" -H "Content-Type: application/json" -d "{ \"dna\": [ \"ATCC\", \"AGCA\", \"TTCT\", \"AAAA\" ]}"`
 
 * Para solicitar as estatistica dos DNAs catalogados:
 >> Exemplo: `curl -X GET "http://localhost:8080/dna/stats" -H "accept: application/json"`
 
+>> Exemplo: `curl -X GET "https://dna-validator.herokuapp.com/dna/stats" -H "accept: application/json"`
+
 
 ## UI Swagger
-Para facilitar a utilização do sistema, foi adicionado no projeto uma interface Swagger que pode ser acessada através do [link](http://localhost:8080/dna/swagger-ui.html).
+Para facilitar a utilização do sistema, foi adicionado no projeto uma interface Swagger que pode ser acessada através do [Local](http://localhost:8080/dna/swagger-ui.html) ou [Heroku](https://dna-validator.herokuapp.com/dna/swagger-ui.html).
 
 ## URL da API no Heroku
-[Heroku](http://localhost:8080/dna/actuator/health)
+[Heroku](https://dna-validator.herokuapp.com/dna/actuator/health)
 
