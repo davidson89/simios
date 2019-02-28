@@ -7,10 +7,11 @@ import br.com.mercadolivre.simios.infrastructure.repository.DNARepository;
 import br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * Created by davidson on 24/02/19.
@@ -28,19 +29,17 @@ public class DNAServiceImpl implements DNAService {
     /**
      * Persiste o DNA com a informação de seu tipo, caso o DNA não exista no banco.
      *
-     * A validação de unicidade é feita via código, pois o campo que representa o DNA pode ser gigantesco.
-     * Por esse motivo, decidi calcular um hash simples (com colisão), e apartir dele verificar se existe uma sequencia igual
+     * A validação de unicidade é feita via banco de dados.
      *
      * @param sequence a sequencia a ser persistida
      * @param isSimio <code>true</code> caso a sequencia de DNA seja de um simio
      */
-    @Async
     public void save(String[] sequence, boolean isSimio) {
         DNAEntity entity = DNAEntity.of(sequence, isSimio ? DNAType.SIMIO : DNAType.HUMAN);
-        Integer dnaHash = entity.getHash();
-        List<DNAEntity> entities = this.dnaRepository.findAllByHashEquals(dnaHash);
+        Long dnaHash = entity.getHash();
+        boolean dnaExists = this.dnaRepository.existsDNAEntityByHashEquals(dnaHash);
 
-        if(entities.stream().noneMatch(entity::equals)) {
+        if(!dnaExists) {
             this.dnaRepository.save(entity);
         }
     }
@@ -48,7 +47,9 @@ public class DNAServiceImpl implements DNAService {
     @Override
     public boolean isSimio(String[] sequence) {
         boolean isSimio = this.simiosService.isSimio(sequence);
-        this.save(sequence, isSimio);
+        // O correto seria criar um executor que tenha timeout para não ficar segurando thread
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> this.save(sequence, isSimio));
         return isSimio;
     }
 

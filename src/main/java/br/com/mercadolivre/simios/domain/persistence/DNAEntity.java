@@ -24,8 +24,8 @@ public class DNAEntity {
      * Isso faria com que tivessemos falsos positvos e falsos negativos.
      * Ele é utilizado apenas para auxiliar a comparação, uma vez que hashes iguais podem ter a mesma sequencia de DNA.
      */
-    @Column(name = "hash", nullable = false)
-    private Integer hash;
+    @Column(name = "hash", nullable = false, unique = true)
+    private Long hash;
 
     @Column(name = "type", nullable = false)
     private DNAType dnaType;
@@ -35,7 +35,7 @@ public class DNAEntity {
     public DNAEntity(String[] dnaSequence, DNAType dnaType) {
         this.dnaSequence = dnaSequence;
         this.dnaType = dnaType;
-        this.hash = Arrays.hashCode(dnaSequence);
+        this.hash = HashUtil.getHash(dnaSequence);
     }
 
     public static DNAEntity of(String[] sequence, DNAType dnaType) {
@@ -54,7 +54,7 @@ public class DNAEntity {
         return dnaSequence;
     }
 
-    public Integer getHash() {
+    public Long getHash() {
         return hash;
     }
 
@@ -77,6 +77,6 @@ public class DNAEntity {
 
     @Override
     public int hashCode() {
-        return hash;
+        return Objects.hash(hash);
     }
 }

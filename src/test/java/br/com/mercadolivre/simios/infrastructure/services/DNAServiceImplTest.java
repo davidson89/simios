@@ -1,7 +1,6 @@
 package br.com.mercadolivre.simios.infrastructure.services;
 
 import br.com.mercadolivre.simios.domain.http.DNAStats;
-import br.com.mercadolivre.simios.domain.persistence.DNAEntity;
 import br.com.mercadolivre.simios.domain.persistence.DNAType;
 import br.com.mercadolivre.simios.infrastructure.repository.DNARepository;
 import br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo;
@@ -13,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -35,7 +33,7 @@ public class DNAServiceImplTest {
 
     @Test
     public void saveNewDNA() {
-        Mockito.when(dnaRepository.findAllByHashEquals(any())).thenReturn(Collections.emptyList());
+        Mockito.when(dnaRepository.existsDNAEntityByHashEquals(any())).thenReturn(false);
         dnaService.save(SIMIO_DNA, true);
 
         Mockito.verify(dnaRepository, Mockito.times(1)).save(any());
@@ -43,9 +41,7 @@ public class DNAServiceImplTest {
 
     @Test
     public void noSaveDNABecauseDNAExistsInDatabase() {
-        var dnaEntity = DNAEntity.of(SIMIO_DNA, DNAType.SIMIO);
-
-        Mockito.when(dnaRepository.findAllByHashEquals(any())).thenReturn(List.of(dnaEntity));
+        Mockito.when(dnaRepository.existsDNAEntityByHashEquals(any())).thenReturn(true);
         dnaService.save(SIMIO_DNA, true);
 
         Mockito.verify(dnaRepository, Mockito.never()).save(any());
@@ -55,8 +51,6 @@ public class DNAServiceImplTest {
     public void isSimio() {
         dnaService.isSimio(SIMIO_DNA);
         Mockito.verify(simiosService, Mockito.times(1)).isSimio(any());
-        Mockito.verify(dnaRepository, Mockito.times(1)).findAllByHashEquals(any());
-        Mockito.verify(dnaRepository, Mockito.times(1)).save(any());
     }
 
     @Test

@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface DNARepository extends CrudRepository<DNAEntity, String> {
 
-    List<DNAEntity> findAllByHashEquals(Integer hash);
+    Boolean existsDNAEntityByHashEquals(Long hash);
 
     @Query("SELECT " +
             "    new br.com.mercadolivre.simios.infrastructure.repository.projections.DNAInfo(dna.dnaType, COUNT(dna)) " +
